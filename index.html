@@ -4,29 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script type="module" crossorigin src="/TODO-App/assets/index-CYlF0grv.js"></script>
-    <link rel="stylesheet" crossorigin href="/TODO-App/assets/index-p7huGDzR.css">
+    <script type="module" crossorigin src="/TODO-App/assets/index-DJ0zc242.js"></script>
+    <link rel="stylesheet" crossorigin href="/TODO-App/assets/index-CBBkNDW5.css">
   </head>
-  <body class="font-josefinSans bg-[#fafafa] h-dvh">
+  <body class="dark font-josefinSans bg-[var(--body-bg)] h-dvh">
     <div class="bg-[url('/images/bg-mobile-light.jpg')] bg-cover h-[200px] bg-no-repeat flex flex-col relative">    
       <div class="flex flex-col gap-4">
        <div class="flex justify-between px-8 items-center">
         <h1 class="text-white font-semibold text-4xl py-10 tracking-[10px]">TODO</h1> 
-        <button class="hover:cursor-pointer h-fit">
+        <button id="switchThemeBtn" class="hover:cursor-pointer h-fit">
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"><path fill="#FFF" fill-rule="evenodd" d="M13 0c.81 0 1.603.074 2.373.216C10.593 1.199 7 5.43 7 10.5 7 16.299 11.701 21 17.5 21c2.996 0 5.7-1.255 7.613-3.268C23.22 22.572 18.51 26 13 26 5.82 26 0 20.18 0 13S5.82 0 13 0z"/></svg>
         </button>
      </div>
-    <div class="bg-white flex py-2 rounded-lg p-2 w-[90%] max-w-[600px] mx-auto items-center">
+    <div class="bg-[var(--input-bg)] flex py-2 rounded-lg p-2 w-[90%] max-w-[600px] mx-auto items-center">
         <span class="w-[25px] h-[25px] rounded-full border-1 opacity-30 border-gray-500 mr-3"></span>
         <input type="text" placeholder="Create a new todo" class="w-full p-1 focus:outline-none placeholder:opacity-80">
     </div>
-      <div class="bg-white w-[90%] mx-auto max-w-[600px] rounded-lg">
+      <div class="bg-[var(--tasks-bg)] w-[90%] mx-auto max-w-[600px] rounded-lg">
         <ul>
             <li class="flex justify-between px-5 py-4 border-b border-b-gray-500">
               <div class="flex gap-2 items-center">
                 <input type="checkbox" name="" id="task" class="hidden peer">
                 <label for="task" class="w-6 h-6 select-none rounded-full border border-gray-500 cursor-pointer flex items-center justify-center peer-checked:bg-gradient-to-br peer-checked:from-[#57ddff] peer-checked:to-[#c058f3] peer-checked:border-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9" class="">
                     <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6"/>
                   </svg>
                 </label>
@@ -70,14 +70,12 @@
             <button class="text-gray-600 cursor-pointer">Clear Completed</button>
           </div>
         </div>
-        <div class="bg-white max-w-[600px] w-[90%] mx-auto flex justify-around p-4">
+        <div class="bg-[var(--tasks-bg)] max-w-[600px] w-[90%] mx-auto flex justify-around p-4">
             <button class="text-gray-600 cursor-pointer">All</button>
             <button class="text-gray-600 cursor-pointer">Active</button>
             <button class="text-gray-600 cursor-pointer">Completed</button>
         </div>
       </div>
-
-
       <p class="text-lg mt-10 mx-auto text-gray-500">Drag and drop to reorder the list</p>
     </div>
   </body>
