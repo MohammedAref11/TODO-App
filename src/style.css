@@ -8,27 +8,30 @@
 @custom-variant dark (&:where(.dark, .dark *)); 
 @custom-variant light (&:where(.light, .light *)); 
 
-
-
-
 @theme { 
     --font-josefinSans: "Jose"; 
-    --body-bg: #fafafa; 
-    --input-bg: #ffffff; 
-    --tasks-bg: #ffffff;
-     
+    --body-bg: hsl(0, 0%, 98%);
+    --input-bg: hsl(0, 0%, 100%);
+    --tasks-bg: hsl(0, 0%, 100%);
+    --task-text: hsl(234, 19%, 35%); 
 }
 
 .light { 
-    --body-bg: #fafafa; 
-    --input-bg: #ffffff; 
-    --tasks-bg: #ffffff;
+    --body-bg: hsl(0, 0%, 98%);
+    --input-bg: hsl(0, 0%, 100%);
+    --tasks-bg: hsl(0, 0%, 100%);
+    --task-text: hsl(234, 19%, 35%); 
 }
 
 .dark { 
-    --body-bg: #161622; 
-    --input-bg: #191622; 
-    --tasks-bg: #25273C; 
+    --body-bg: hsl(235, 21%, 11%) ; 
+    --input-bg: hsl(234, 24%, 19%); 
+    --tasks-bg: hsl(234, 24%, 19%); 
+    --task-text: hsl(234, 39%, 85%); 
+}
+
+.active { 
+    color: hsl(220, 98%, 61%);
 }
 
 

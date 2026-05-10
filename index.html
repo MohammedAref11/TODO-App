@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Document</title>
-    <link rel="stylesheet" href="./src/style.css" />
+    <link rel="stylesheet" href="./src/style.css"/>
   </head>
-  <body class="dark font-josefinSans bg-[var(--body-bg)] h-dvh">
+  <body class="font-josefinSans bg-[var(--body-bg)] h-dvh">
     <div class="bg-[url('/images/bg-mobile-light.jpg')] bg-cover h-[200px] bg-no-repeat flex flex-col relative">    
       <div class="flex flex-col gap-4">
        <div class="flex justify-between px-8 items-center">
@@ -17,7 +17,7 @@
      </div>
     <div class="bg-[var(--input-bg)] flex py-2 rounded-lg p-2 w-[90%] max-w-[600px] mx-auto items-center">
         <span class="w-[25px] h-[25px] rounded-full border-1 opacity-30 border-gray-500 mr-3"></span>
-        <input type="text" placeholder="Create a new todo" class="w-full p-1 focus:outline-none placeholder:opacity-80">
+        <input type="text" placeholder="Create a new todo" class="w-full p-1 focus:outline-none placeholder:text-[var(--task-text)] text-[var(--task-text)]">
     </div>
       <div class="bg-[var(--tasks-bg)] w-[90%] mx-auto max-w-[600px] rounded-lg">
         <ul>
@@ -29,35 +29,7 @@
                     <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6"/>
                   </svg>
                 </label>
-                <span>Finish JavaScript Course</span>
-              </div>
-              <button class="hover:cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
-              </button>
-            </li>
-            <li class="flex justify-between  px-5 py-4 border-b border-b-gray-500">
-              <div class="flex gap-2 items-center">
-                <input type="checkbox" name="" id="task2" class="hidden peer">
-                <label for="task2" class="w-6 h-6 select-none rounded-full border border-gray-500 cursor-pointer flex items-center justify-center peer-checked:bg-gradient-to-br peer-checked:from-[#57ddff] peer-checked:to-[#c058f3] peer-checked:border-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
-                    <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6"/>
-                  </svg>
-                </label>
-                <span>Learn drawing</span>
-              </div>
-              <button class="hover:cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
-              </button>
-            </li>
-            <li class="flex justify-between  px-5 py-4 border-b border-b-gray-500">
-              <div class="flex gap-2 items-center">
-                <input type="checkbox" name="" id="task3" class="hidden peer">
-                <label for="task3" class="w-6 h-6 select-none rounded-full border border-gray-500 cursor-pointer flex items-center justify-center peer-checked:bg-gradient-to-br peer-checked:from-[#57ddff] peer-checked:to-[#c058f3] peer-checked:border-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
-                    <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6"/>
-                  </svg>
-                </label>
-                <span>Learn more about github</span>
+                <span class="text-[var(--task-text)]">Finish JavaScript Course</span>
               </div>
               <button class="hover:cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
@@ -65,14 +37,14 @@
             </li>
         </ul>  
           <div class="p-5 flex justify-between">
-            <p class="text-gray-600" id="tasksCounter">Items Left 3</p>
-            <button class="text-gray-600 cursor-pointer">Clear Completed</button>
+            <p class="text-[var(--task-text)]" id="tasksCounter">Items Left 3</p>
+            <button class="text-[var(--task-text)] cursor-pointer">Clear Completed</button>
           </div>
         </div>
         <div class="bg-[var(--tasks-bg)] max-w-[600px] w-[90%] mx-auto flex justify-around p-4">
-            <button class="text-gray-600 cursor-pointer">All</button>
-            <button class="text-gray-600 cursor-pointer">Active</button>
-            <button class="text-gray-600 cursor-pointer">Completed</button>
+            <button class="text-[var(--task-text)] active cursor-pointer">All</button>
+            <button class="text-[var(--task-text)] cursor-pointer">Active</button>
+            <button class="text-[var(--task-text)] cursor-pointer">Completed</button>
         </div>
       </div>
       <p class="text-lg mt-10 mx-auto text-gray-500">Drag and drop to reorder the list</p>
