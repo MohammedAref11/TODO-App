@@ -1,5 +1,17 @@
 const switchThemeBtn = document.getElementById("switchThemeBtn"); 
 let themePreference = localStorage.getItem("theme");
+const userInput = document.getElementById("userInput");
+const tasksCount = document.getElementById("tasksCounter"); 
+
+console.log(tasksCount)
+
+
+
+
+function addTask() { 
+    
+}
+
 
 const setThemeDark = () => { 
     document.body.classList.remove("light");
