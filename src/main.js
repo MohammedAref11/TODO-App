@@ -1,17 +1,31 @@
 const switchThemeBtn = document.getElementById("switchThemeBtn"); 
 let themePreference = localStorage.getItem("theme");
+let savedTaskscheck = localStorage.getItem("tasks")
 const userInput = document.getElementById("userInput");
 const tasksCount = document.getElementById("tasksCounter"); 
+const tasksCon = document.getElementById("tasksCon"); 
 
-console.log(tasksCount)
-
-
-
-
-function addTask() { 
-    
+function addTask() {
+    const userInputVal = userInput.value;
+    userInput.value = "";
+        tasksCon.innerHTML += `
+            <li class="flex justify-between px-5 py-4 border-b border-b-gray-500 cursor-grab active:cursor-grabbing">
+                  <div class="flex gap-2 items-center relative">
+                    <input type="checkbox" checked name="task" id="task" class="appearance-none cursor-pointer border border-gray-400 w-6 h-6 rounded-full checked:bg-gradient-to-br checked:from-[#57ddff] checked:to-[#c058f3] after:absolute after:w-5 after:h-5 after:bg-[url('/images/icon-check.svg')] after:bg-no-repeat after:top-[7px] after:left-[6px] after:invisible checked:after:visible">
+                    <label for="task" class="text-[var(--task-text)] select-none">${userInputVal}</label>
+                </div>
+                <button class="hover:cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
+                </button>
+            </li>`;
 }
 
+userInput.addEventListener('keypress', (e) => { 
+    if (e.key === "Enter") { 
+        e.value = ""
+        addTask();
+    }
+})
 
 const setThemeDark = () => { 
     document.body.classList.remove("light");
