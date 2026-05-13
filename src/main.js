@@ -1,23 +1,55 @@
 const switchThemeBtn = document.getElementById("switchThemeBtn"); 
 let themePreference = localStorage.getItem("theme");
-let savedTaskscheck = localStorage.getItem("tasks")
+const checkSavedTasks = localStorage.getItem("tasks");
 const userInput = document.getElementById("userInput");
 const tasksCount = document.getElementById("tasksCounter"); 
 const tasksCon = document.getElementById("tasksCon"); 
 
+
 function addTask() {
     const userInputVal = userInput.value;
     userInput.value = "";
-        tasksCon.innerHTML += `
+        saveToLocalStorage(userInputVal)
+        const taskstoDisplay = localStorage.getItem("tasks"); 
+        const tasksParsed =  JSON.parse(taskstoDisplay)
+        displayTasks(tasksParsed)
+        console.log(tasksParsed)
+}
+
+if (checkSavedTasks) { 
+    displayTasks(JSON.parse(checkSavedTasks))
+}
+
+function displayTasks(tasks) { 
+    if (!tasks) { 
+        tasksList = localStorage.setItem("tasks", JSON.stringify([tasks]))
+        displayTasks(JSON.stringify(checkSavedTasks))
+    } else { 
+            tasks.forEach((e, index) => { 
+            tasksCon.innerHTML += `
             <li class="flex justify-between px-5 py-4 border-b border-b-gray-500 cursor-grab active:cursor-grabbing">
                   <div class="flex gap-2 items-center relative">
                     <input type="checkbox" name="task" id="task" class="appearance-none cursor-pointer border border-gray-400 w-6 h-6 rounded-full checked:bg-gradient-to-br checked:from-[#57ddff] checked:to-[#c058f3] after:absolute after:w-5 after:h-5 after:bg-[url('/images/icon-check.svg')] after:bg-no-repeat after:top-[7px] after:left-[6px] after:invisible checked:after:visible">
-                    <label for="task" class="text-[var(--task-text)] select-none">${userInputVal}</label>
+                    <label for="task" class="text-[var(--task-text)] select-none">${e + index}</label>
                 </div>
                 <button class="hover:cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
                 </button>
             </li>`;
+    })
+}
+
+}
+
+function saveToLocalStorage(task) {       
+    let tasksList = localStorage.getItem("tasks");
+    if (!tasksList) { 
+        tasksList = localStorage.setItem("tasks", JSON.stringify([task]))
+    } else { 
+        const savedTasks = JSON.parse(tasksList);
+        savedTasks.push(task)
+        localStorage.setItem("tasks", JSON.stringify(savedTasks))
+    }
 }
 
 userInput.addEventListener('keypress', (e) => { 
@@ -56,3 +88,4 @@ switchThemeBtn.addEventListener('click', () => {
         setThemeDark()
     }
 })
+
