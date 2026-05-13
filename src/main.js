@@ -11,7 +11,7 @@ function addTask() {
         tasksCon.innerHTML += `
             <li class="flex justify-between px-5 py-4 border-b border-b-gray-500 cursor-grab active:cursor-grabbing">
                   <div class="flex gap-2 items-center relative">
-                    <input type="checkbox" checked name="task" id="task" class="appearance-none cursor-pointer border border-gray-400 w-6 h-6 rounded-full checked:bg-gradient-to-br checked:from-[#57ddff] checked:to-[#c058f3] after:absolute after:w-5 after:h-5 after:bg-[url('/images/icon-check.svg')] after:bg-no-repeat after:top-[7px] after:left-[6px] after:invisible checked:after:visible">
+                    <input type="checkbox" name="task" id="task" class="appearance-none cursor-pointer border border-gray-400 w-6 h-6 rounded-full checked:bg-gradient-to-br checked:from-[#57ddff] checked:to-[#c058f3] after:absolute after:w-5 after:h-5 after:bg-[url('/images/icon-check.svg')] after:bg-no-repeat after:top-[7px] after:left-[6px] after:invisible checked:after:visible">
                     <label for="task" class="text-[var(--task-text)] select-none">${userInputVal}</label>
                 </div>
                 <button class="hover:cursor-pointer">
