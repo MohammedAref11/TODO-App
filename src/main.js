@@ -5,57 +5,6 @@ const userInput = document.getElementById("userInput");
 const tasksCount = document.getElementById("tasksCounter"); 
 const tasksCon = document.getElementById("tasksCon");
 
-function addTask() {
-    const userInputVal = userInput.value;
-        userInput.value = "";
-        tasksCon.innerHTML += `
-            <li class="flex justify-between px-5 py-4 border-b border-b-gray-500 cursor-grab active:cursor-grabbing">
-                  <div class="flex gap-2 items-center relative">
-                    <input type="checkbox" name="task" id="task" class="appearance-none cursor-pointer border border-gray-400 w-6 h-6 rounded-full checked:bg-gradient-to-br checked:from-[#57ddff] checked:to-[#c058f3] after:absolute after:w-5 after:h-5 after:bg-[url('/images/icon-check.svg')] after:bg-no-repeat after:top-[7px] after:left-[6px] after:invisible checked:after:visible">
-                    <label for="task" class="text-[var(--task-text)] select-none">${userInputVal}</label>
-                </div>
-                <button class="hover:cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
-                </button>
-            </li>`;
-        saveToLocalStorage(userInputVal);
-}
-
-if (checkSavedTasks) { 
-    displayTasks(JSON.parse(checkSavedTasks))
-}
-
-function displayTasks(tasks) { 
-    tasks.forEach((e, index) => { 
-        tasksCon.innerHTML += `
-            <li class="flex justify-between px-5 py-4 border-b border-b-gray-500 cursor-grab active:cursor-grabbing">
-                  <div class="flex gap-2 items-center relative">
-                    <input type="checkbox" name="task" id="task" class="appearance-none cursor-pointer border border-gray-400 w-6 h-6 rounded-full checked:bg-gradient-to-br checked:from-[#57ddff] checked:to-[#c058f3] after:absolute after:w-5 after:h-5 after:bg-[url('/images/icon-check.svg')] after:bg-no-repeat after:top-[7px] after:left-[6px] after:invisible checked:after:visible">
-                    <label for="task" class="text-[var(--task-text)] select-none">${e}</label>
-                </div>
-                <button class="hover:cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
-                </button>
-            </li>`;
-    })
-}
-
-function saveToLocalStorage(task) {       
-    let tasksList = localStorage.getItem("tasks");
-    if (!tasksList) { 
-        tasksList = localStorage.setItem("tasks", JSON.stringify([task]))
-    } else { 
-        const savedTasks = JSON.parse(tasksList);
-        savedTasks.push(task)
-        localStorage.setItem("tasks", JSON.stringify(savedTasks))
-    }
-}
-
-userInput.addEventListener('keypress', (e) => {
-    if (e.key === "Enter" && e.target.value.length > 0) { 
-        addTask();
-    }
-})
 
 const setThemeDark = () => { 
     document.body.classList.remove("light");
@@ -86,4 +35,70 @@ switchThemeBtn.addEventListener('click', () => {
         setThemeDark()
     }
 })
+
+function addTask() {
+    const userInputVal = userInput.value;
+        userInput.value = "";
+        saveToLocalStorage(userInputVal);
+        const newData = JSON.parse(localStorage.getItem("tasks"))
+        const newPoped = newData.pop(); 
+        tasksCon.innerHTML += `
+            <li class="flex justify-between px-5 py-4 border-b border-b-gray-500 cursor-grab active:cursor-grabbing">
+                  <div class="flex gap-2 items-center relative">
+                    <input type="checkbox" name="task" id="${newPoped.TaskNum}" class="appearance-none cursor-pointer border border-gray-400 w-6 h-6 rounded-full checked:bg-gradient-to-br checked:from-[#57ddff] checked:to-[#c058f3] after:absolute after:w-5 after:h-5 after:bg-[url('/images/icon-check.svg')] after:bg-no-repeat after:top-[7px] after:left-[6px] after:invisible checked:after:visible">
+                    <label for="${newPoped.TaskNum}" class="text-[var(--task-text)] select-none">${newPoped.task}</label>
+                </div>
+                <button class="hover:cursor-pointer" id="${newPoped.TaskNum}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
+                </button>
+            </li>`;
+}
+
+if (checkSavedTasks) { 
+    displayTasks(JSON.parse(checkSavedTasks))
+}
+
+function displayTasks(data) { 
+    data.forEach((e, index) => { 
+        tasksCon.innerHTML += `
+            <li class="flex justify-between px-5 py-4 border-b border-b-gray-500 cursor-grab active:cursor-grabbing">
+                  <div class="flex gap-2 items-center relative">
+                    <input type="checkbox" name="task" id="${e.TaskNum}" class="appearance-none cursor-pointer border border-gray-400 w-6 h-6 rounded-full checked:bg-gradient-to-br checked:from-[#57ddff] checked:to-[#c058f3] after:absolute after:w-5 after:h-5 after:bg-[url('/images/icon-check.svg')] after:bg-no-repeat after:top-[7px] after:left-[6px] after:invisible checked:after:visible">
+                    <label for="${e.TaskNum}" class="text-[var(--task-text)] select-none">${e.task}</label>
+                </div>
+                <button class="hover:cursor-pointer" id="${e.TaskNum}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
+                </button>
+            </li>`;
+    })
+}
+
+function saveToLocalStorage(task) {       
+    let tasksList = localStorage.getItem("tasks");
+    if (!tasksList) { 
+        tasksList = localStorage.setItem("tasks", JSON.stringify([{task: task, TaskNum:0, checked: false}]))
+    } else { 
+        const savedTasks = JSON.parse(tasksList);
+        savedTasks.push({task: task, TaskNum: savedTasks.length, checked: false})
+        localStorage.setItem("tasks", JSON.stringify(savedTasks))
+        console.log(savedTasks)
+    }
+}
+
+userInput.addEventListener('keypress', (e) => {
+    if (e.key === "Enter" && e.target.value.length > 0) { 
+        addTask()
+    }
+})
+
+tasksCon.addEventListener("click", (e) => { 
+    const storageData = JSON.parse(localStorage.getItem("tasks"))
+    const button = e.target.closest("button")
+    console.log(storageData)
+    if (button) { 
+        const newData = storageData.toSpliced(button.id, 1); 
+    }
+})
+
+
 
