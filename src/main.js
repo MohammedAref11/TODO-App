@@ -54,7 +54,8 @@ function displayTasks(data) {
         tasksCon.innerHTML += `
             <li class="flex justify-between px-5 py-4 border-b border-b-gray-500 cursor-grab active:cursor-grabbing">
                   <div class="flex gap-2 items-center relative">
-                    <input type="checkbox" name="task" id="${index}" class="appearance-none cursor-pointer border border-gray-400 w-6 h-6 rounded-full checked:bg-gradient-to-br checked:from-[#57ddff] checked:to-[#c058f3] after:absolute after:w-5 after:h-5 after:bg-[url('/images/icon-check.svg')] after:bg-no-repeat after:top-[7px] after:left-[6px] after:invisible checked:after:visible">
+                    <input type="checkbox" name="task" id="${index}" class="appearance-none cursor-pointer border border-gray-400 w-6 h-6 rounded-full checked:bg-gradient-to-br checked:from-[#57ddff] checked:to-[#c058f3] 
+                    after:absolute after:w-5 after:h-5 after:bg-[url('/images/icon-check.svg')] after:bg-no-repeat after:top-[7px] after:left-[6px] after:invisible checked:after:visible" ${e.checked ? "checked" : ""}>
                     <label for="${index}" class="text-[var(--task-text)] select-none">${e.task}</label>
                 </div>
                 <button class="hover:cursor-pointer" id="${index}">
@@ -70,15 +71,17 @@ function saveToLocalStorage(task) {
         tasksList = localStorage.setItem("tasks", JSON.stringify([{task: task, checked: false}]))
     } else { 
         const savedTasks = JSON.parse(tasksList);
-        savedTasks.push({task: task,  checked: false})
+        savedTasks.push({task: task.trim(),  checked: false})
         localStorage.setItem("tasks", JSON.stringify(savedTasks))
     }
 }
+
 
 userInput.addEventListener('keypress', (e) => {
     if (e.key === "Enter" && e.target.value.length > 0) { 
         addTask()
         TasksCounter()
+        saveToCompleted()
     }
 })
 
@@ -92,12 +95,40 @@ tasksCon.addEventListener("click", (e) => {
         const newDataToDis = JSON.parse(localStorage.getItem("tasks"))
         displayTasks(newDataToDis)
         TasksCounter()
-    }   
+        saveToCompleted()
+    }
+
+    const checkinput = e.target.closest("input"); 
+    if (checkinput) {
+        checkinput.toggleAttribute("checked")
+    }
 })
 
 function TasksCounter() { 
     const dataFromLocal = JSON.parse(localStorage.getItem("tasks"))
     tasksCount.textContent = `Items Left ${dataFromLocal.length}`
 }
+
+function saveToCompleted() { 
+    const checkLocalStorage = localStorage.getItem("completed")
+    const checkBoxEl = tasksCon.querySelectorAll("li"); 
+    const testArray = []
+    checkBoxEl.forEach(e => { 
+        const input = e.querySelector("input")
+        const labeling = e.querySelector("label"); 
+        testArray.push({task: labeling.textContent, completed: input.checked})
+    })
+    console.log(testArray)
+    if (!checkLocalStorage) { 
+        localStorage.setItem("completed", JSON.stringify([]))
+        const getLocalData = JSON.parse(localStorage.getItem("tasks"));
+
+    } else { 
+ 
+    }
+}
+
+
+
 
 
