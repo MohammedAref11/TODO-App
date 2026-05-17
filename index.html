@@ -20,17 +20,16 @@
     </div>
       <div class="bg-[var(--tasks-bg)] w-[90%] mx-auto max-w-[600px] rounded-lg">
         <ul id="tasksCon">
-          
         </ul>  
           <div class="p-5 flex justify-between">
-            <p class="text-[var(--task-text)]" id="tasksCounter">Items Left 3</p>
-            <button class="text-[var(--task-text)] cursor-pointer">Clear Completed</button>
+            <p class="text-[var(--task-text)]" id="tasksCounter">Items Left 0</p>
+            <button class="text-[var(--task-text)] cursor-pointer" id="clearCompBtn">Clear Completed</button>
           </div>
         </div>
-        <div class="bg-[var(--tasks-bg)] max-w-[600px] w-[90%] mx-auto flex justify-around p-4">
-            <button class="text-[var(--task-text)] active cursor-pointer">All</button>
-            <button class="text-[var(--task-text)] cursor-pointer">Active</button>
-            <button class="text-[var(--task-text)] cursor-pointer">Completed</button>
+        <div class="bg-[var(--tasks-bg)] max-w-[600px] w-[90%] mx-auto flex justify-around p-4" id="btnsCon">
+            <button class="text-[var(--task-text)] cursor-pointer transition-colors" id="allBtn">All</button>
+            <button class="text-[var(--task-text)] cursor-pointer transition-colors" id="activeBtn">Active</button>
+            <button class="text-[var(--task-text)] cursor-pointer transition-colors" id="comBtn">Completed</button>
         </div>
       </div>
       <p class="text-lg mt-10 mx-auto text-gray-500">Drag and drop to reorder the list</p>
