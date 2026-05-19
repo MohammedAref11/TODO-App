@@ -63,6 +63,7 @@ function saveToLocalStorage(userTask) {
 if (checkSavedTasks) { 
     displayTasks(JSON.parse(checkSavedTasks))
     tasksCounter()
+    allBtn.classList.add("text-blue-500")
 }
 
 function displayTasks(data) {
