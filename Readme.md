@@ -22,8 +22,25 @@
 
 ## How to set it up localy
 
-1. move to main directory ```cd "TODO-APP"```
-2. run this command to install the required dependencies```npm install ```
-3. last step run this commend to host the website localy
-4. ```npm run dev```
+1. clone the repo
+```powershell
+git clone https://github.com/MohammedAref11/TODO-App.git
+```
+
+2. move to main file
+```powershell
+cd "TODO-App"
+```
+
+3. install required dependencies
+```powershell
+npm install
+```
+
+4. To run the website localy run 
+```powershell
+npm run dev
+```
+
+
 
