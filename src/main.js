@@ -1,3 +1,4 @@
+import Sortable from 'sortablejs'
 const switchThemeBtn = document.getElementById("switchThemeBtn"); 
 let themePreference = localStorage.getItem("theme");
 const checkSavedTasks = localStorage.getItem("tasks");
@@ -71,7 +72,7 @@ function displayTasks(data) {
         tasksCon.innerHTML = "";
         data.forEach((e, index) => { 
             tasksCon.innerHTML += `
-                <li class="flex justify-between px-5 py-4 border-b border-b-gray-500 cursor-grab active:cursor-grabbing">
+                <li class="bg-[var(--tasks-bg)] flex justify-between px-5 py-4 border-b border-b-gray-500 cursor-grab active:cursor-grabbing transition-colors duration-200" draggable=true>
                       <div class="flex gap-2 items-center relative">
                         <input type="checkbox" name="task" id="${index}" class="appearance-none cursor-pointer border border-gray-400 w-6 h-6 rounded-full checked:bg-gradient-to-br checked:from-[#57ddff] checked:to-[#c058f3] 
                         after:absolute after:w-5 after:h-5 after:bg-[url('/images/icon-check.svg')] after:bg-no-repeat after:top-[7px] after:left-[6px] after:invisible checked:after:visible" ${e.checked ? "checked" : ""}>
@@ -94,7 +95,7 @@ userInput.addEventListener('keypress', (e) => {
 
 tasksCon.addEventListener("click", (e) => { 
     const storageData = JSON.parse(localStorage.getItem("tasks"))
-    const button = e.target.closest("button")
+    const button = e.target.closest("button"); 
     if (button) { 
         const newData = storageData.toSpliced(button.id, 1); 
         const stringy = JSON.stringify(newData)
@@ -108,6 +109,7 @@ tasksCon.addEventListener("click", (e) => {
         checkForCompleted()
     }
 })
+
 
 function tasksCounter() { 
     const dataFromLocal = JSON.parse(localStorage.getItem("tasks"))
@@ -168,7 +170,6 @@ allBtn.addEventListener("click", () => {
     tasksCounter()
 })
 
-
 activeBtn.addEventListener("click", () => { 
     displayActive()
 })
@@ -188,4 +189,32 @@ btnsCon.addEventListener("click", (e) => {
         })
         btn.classList.add("text-blue-500")
     }
+})
+
+
+
+function saveAfterSort() { 
+    const items = [...document.querySelectorAll("li")]
+    const newData = []; 
+    items.forEach((e) => { 
+        newData.push({"task": e.querySelector("label").textContent, 
+            "checked": e.querySelector("input").checked})
+    })
+    localStorage.setItem("tasks", JSON.stringify(newData))
+}
+
+
+new Sortable(tasksCon, { 
+    animation: 180, 
+    delay: 100,
+    delayOnTouchOnly: true, 
+    touchStartThreshold: 5, 
+    onStart: function (evt) { 
+        evt.item.classList.add("opacity-50"); 
+    }, 
+    onEnd: function (evt) { 
+        evt.item.classList.remove("opacity-50")
+        saveAfterSort()
+    }, 
+
 })
