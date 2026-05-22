@@ -110,7 +110,6 @@ tasksCon.addEventListener("click", (e) => {
     }
 })
 
-
 function tasksCounter() { 
     const dataFromLocal = JSON.parse(localStorage.getItem("tasks"))
     if (dataFromLocal) { 
@@ -191,8 +190,6 @@ btnsCon.addEventListener("click", (e) => {
     }
 })
 
-
-
 function saveAfterSort() { 
     const items = [...document.querySelectorAll("li")]
     const newData = []; 
@@ -202,7 +199,6 @@ function saveAfterSort() {
     })
     localStorage.setItem("tasks", JSON.stringify(newData))
 }
-
 
 new Sortable(tasksCon, { 
     animation: 180, 
