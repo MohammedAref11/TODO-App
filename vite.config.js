@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  base:"/TODO-App/",
+  base:process.env.VITE_BASE_PATH || "/TODO-App",
   plugins: [
     tailwindcss(),
   ],
